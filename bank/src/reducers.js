@@ -11,7 +11,7 @@ const initialAccountState = {
   accounts: [
     {
       id: 1,
-      balance: 0
+      balance: 20
     },
     {
       id: 2,
