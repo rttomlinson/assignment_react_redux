@@ -18,7 +18,7 @@ const initialAccountState = {
       balance: 0
     }
   ],
-  selectedAccount: {},
+  selectedAccount: 1,
   transactions: []
   //Are we expecting more accounts with fewer transactions or fewer accounts with more transactions?
 };
@@ -34,7 +34,7 @@ function dateFilter(state = { startDate: 0, endDate: Date.now() }, action) {
 }
 
 //Account reducer
-function accounts(state = initialAccountState, action) {
+function bankAccounts(state = initialAccountState, action) {
   let updatedAccount;
   let newTransaction;
   let newAccounts;
@@ -149,6 +149,6 @@ function accounts(state = initialAccountState, action) {
 }
 
 export const bankApp = combineReducers({
-  accounts,
+  bankAccounts,
   dateFilter
 });
