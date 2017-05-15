@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CurrentAccount from '../components/CurrentAccount';
 import serialize from 'form-serialize';
-import { withdraw, deposit } from '../actions';
+import { withdraw, deposit, transfer } from '../actions';
 
 function mapStateToProps(state) {
   //filter for the current account
@@ -24,8 +24,14 @@ function mapDispatchToProps(dispatch) {
 
       if (data.transaction == 'withdraw') {
         dispatch(withdraw(data.amount));
-      } else {
+      } else if (data.transaction == 'deposit') {
         dispatch(deposit(data.amount));
+      } else {
+          let transferInfo = {
+              destination: +data.destination,
+              amount: +data.amount
+          };
+          dispatch(transfer(transferInfo));
       }
     }
   };

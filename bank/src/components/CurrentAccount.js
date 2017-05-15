@@ -19,6 +19,13 @@ const CurrentAccount = ({ account, onSubmit }) => {
 
         <label htmlFor="deposit"> Deposit </label>
         <input id="deposit" type="radio" name="transaction" value="deposit" />
+        
+        <div>
+            <label htmlFor="transfer"> Transfer </label>
+            <input id="transfer" type="radio" name="transaction" value="transfer" />
+            <label htmlFor="destination">Destination </label>
+            <input id="destination" type="text" name="destination" />
+        </div>
 
         <input type="submit" name="submit" />
 

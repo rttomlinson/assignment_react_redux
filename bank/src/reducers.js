@@ -19,7 +19,8 @@ const initialAccountState = {
     }
   ],
   selectedAccount: 1,
-  transactions: []
+  transactions: [],
+  error: null
   //Are we expecting more accounts with fewer transactions or fewer accounts with more transactions?
 };
 
@@ -72,9 +73,15 @@ function bankAccounts(state = initialAccountState, action) {
       };
 
     case WITHDRAW:
-      // if (state.selectedAccount.balance < action.data) {
-      //   return state;
-      // }
+      let userAccount = state.accounts.find(account => {
+        return account.id === state.selectedAccount;
+      });
+      if (userAccount.balance < action.data) {
+        return {
+            ...state,
+            error: "Not enough money"
+        };
+      }
 
       newTransaction = {
         type: 'withdraw',
@@ -102,22 +109,25 @@ function bankAccounts(state = initialAccountState, action) {
 
     case TRANSFER:
       let origin = state.accounts.find(account => {
-        return account.id === action.data.origin;
+        return account.id === state.selectedAccount;
       });
       if (origin.balance < action.data.amount) {
-        return state;
+        return {
+            ...state,
+            error: "Not enough money"
+        };
       }
 
       newTransaction = {
         type: 'transfer',
         amount: action.data.amount,
-        origin: action.data.origin,
+        origin: origin.id,
         destination: action.data.destination,
-        date: action.data.date
+        date: new Date()
       };
 
       newAccounts = state.accounts.map(account => {
-        if (account.id === action.data.origin) {
+        if (account.id === origin.id) {
           updatedAccount = {
             ...account,
             balance: account.balance - action.data.amount
