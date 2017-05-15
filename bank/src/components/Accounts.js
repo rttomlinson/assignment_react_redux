@@ -1,10 +1,10 @@
 import React from 'react';
-import propTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 function getAccounts(accounts, onClick) {
   return accounts.map(function(el) {
     return (
-      <li>
+      <li key={el.id}>
         <a
           href="#"
           onClick={e => {
@@ -28,6 +28,10 @@ const Accounts = ({ accounts, onClick }) => {
       </ul>
     </div>
   );
+};
+Accounts.propTypes = {
+    accounts: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 
 export default Accounts;
