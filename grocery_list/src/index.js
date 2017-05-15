@@ -9,12 +9,7 @@ import { createStore } from 'redux';
 import { groceryApp } from './reducers';
 import { Provider } from 'react-redux';
 
-import {
-  addItem,
-  setPurchasedFilter,
-  setCategoryFilter,
-  setSort
-} from './actions';
+import { addItem, setPurchasedFilter, setCategoryFilter } from './actions';
 
 let store = createStore(groceryApp);
 
@@ -54,18 +49,11 @@ store.dispatch(
   })
 );
 
-store.dispatch(setPurchasedFilter('PURCHASED'));
-
-store.dispatch(setCategoryFilter('WEAPONS'));
-
-store.dispatch(setSort('DESCRIPTION'));
-
 unsubscribe();
 
-
 ReactDOM.render(
-    <Provider store={store}>
-        <App/>
-    </Provider>,
-    document.getElementById('root')
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
 );

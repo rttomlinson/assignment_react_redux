@@ -1,4 +1,4 @@
-import { combineReducers } from "redux";
+import { combineReducers } from 'redux';
 
 //import actions here
 import {
@@ -6,7 +6,7 @@ import {
   SET_PURCHASED_FILTER,
   SET_CATEGORY_FILTER,
   SET_SORT
-} from "./actions";
+} from './actions';
 
 function groceryItems(state = [], action) {
   switch (action.type) {
@@ -18,7 +18,7 @@ function groceryItems(state = [], action) {
 }
 
 function groceryFilters(
-  state = { purchasedFilter: "SHOW_ALL", categoryFilter: "SHOW_ALL" },
+  state = { purchasedFilter: 'SHOW_ALL', categoryFilter: 'SHOW_ALL' },
   action
 ) {
   switch (action.type) {
@@ -31,7 +31,7 @@ function groceryFilters(
   }
 }
 
-function grocerySort(state = 'NAME', action) {
+function grocerySort(state = 'ASC', action) {
   switch (action.type) {
     case SET_SORT:
       return action.data;
