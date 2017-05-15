@@ -7,6 +7,7 @@ import './index.css';
 import { createStore } from 'redux';
 
 import { groceryApp } from './reducers';
+import { Provider } from 'react-redux';
 
 import {
   addItem,
@@ -60,3 +61,11 @@ store.dispatch(setCategoryFilter('WEAPONS'));
 store.dispatch(setSort('DESCRIPTION'));
 
 unsubscribe();
+
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App/>
+    </Provider>,
+    document.getElementById('root')
+);
