@@ -1,18 +1,21 @@
 import React from 'react'
 
-
-const GroceryList = ({items}) => {
-    
-    const groceryItems = items.map((item) => {
-        console.log("item value", item);
+function makeGroceryItems(items){ 
+    return items.map((item) => {
         return (
             <li>
                 <p>{item.name}: {item.category}: <span>{item.purchased ? "Purchased!" : "Not Purchased!"}</span></p>
             </li>
         );
     });
-    
-    
+}
+
+
+const GroceryList = ({
+    items
+}) => {
+
+    let groceryItems = makeGroceryItems(items);
     return (
         <ul>
             {groceryItems}

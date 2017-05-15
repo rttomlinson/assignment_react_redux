@@ -20,8 +20,10 @@ function filteredItems(list, filter) {
 }
 
 function sortedItems(list, sorting) {
+    //create new array of the list since unable to modify
+    let tempList = [...list];
   if (sorting === 'ASC') {
-    list.sort(function(a, b) {
+    tempList.sort(function(a, b) {
       var nameA = a.name.toUpperCase();
       var nameB = b.name.toUpperCase();
 
@@ -29,7 +31,7 @@ function sortedItems(list, sorting) {
       else return 1;
     });
   } else if (sorting === 'DESC') {
-    list.sort(function(a, b) {
+    tempList.sort(function(a, b) {
       var nameA = a.name.toUpperCase();
       var nameB = b.name.toUpperCase();
 
@@ -38,7 +40,7 @@ function sortedItems(list, sorting) {
     });
   }
 
-  return list;
+  return tempList;
 }
 
 function mapStateToProps(state) {
