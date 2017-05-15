@@ -25,7 +25,7 @@ const initialAccountState = {
 };
 
 //Filter reducer
-function dateFilter(state = { startDate: 0, endDate: Date.now() }, action) {
+function dateFilter(state = { startDate: 0, endDate: null }, action) {
   switch (action.type) {
     case SET_DATE_FILTER:
       return action.data;
@@ -53,7 +53,7 @@ function bankAccounts(state = initialAccountState, action) {
         amount: action.data,
         origin: null,
         destination: state.selectedAccount,
-        date: new Date()
+        date: Date.now()
       };
       newAccounts = state.accounts.map(account => {
         if (account.id === state.selectedAccount) {
@@ -78,8 +78,8 @@ function bankAccounts(state = initialAccountState, action) {
       });
       if (userAccount.balance < action.data) {
         return {
-            ...state,
-            error: "Not enough money"
+          ...state,
+          error: 'Not enough money'
         };
       }
 
@@ -88,7 +88,7 @@ function bankAccounts(state = initialAccountState, action) {
         amount: action.data,
         origin: state.selectedAccount,
         destination: null,
-        date: new Date()
+        date: Date.now()
       };
 
       newAccounts = state.accounts.map(account => {
@@ -113,8 +113,8 @@ function bankAccounts(state = initialAccountState, action) {
       });
       if (origin.balance < action.data.amount) {
         return {
-            ...state,
-            error: "Not enough money"
+          ...state,
+          error: 'Not enough money'
         };
       }
 
