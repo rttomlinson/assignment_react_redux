@@ -4,6 +4,24 @@ import CurrentAccount from '../components/CurrentAccount';
 import serialize from 'form-serialize';
 import { withdraw, deposit, transfer } from '../actions';
 
+// class CurrentAccountContainer extends React.Components{
+//     constructor(){
+//         super()
+        
+//         this.state = {
+//             showDestination: false
+//         }
+//     }
+    
+    
+//     render() {
+//         return (
+//             <CurrentAccount showDestination={this.state.showDestination}/>
+//         );
+//     }
+// }
+
+
 function mapStateToProps(state) {
   //filter for the current account
   const account = state.bankAccounts.accounts.find(account => {
@@ -33,12 +51,11 @@ function mapDispatchToProps(dispatch) {
           };
           dispatch(transfer(transferInfo));
       }
+      form.reset();
     }
   };
 }
 
-const CurrentAccountContainer = connect(mapStateToProps, mapDispatchToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   CurrentAccount
 );
-
-export default CurrentAccountContainer;

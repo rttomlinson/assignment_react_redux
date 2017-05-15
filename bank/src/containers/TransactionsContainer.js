@@ -32,10 +32,9 @@ function mapDispatchToProps(dispatch, ownProps) {
 
       const form = e.target;
       const data = serialize(form, { hash: true });
-
       let convertedTime = {
-        startDate: Date.parse(data.startDate),
-        endDate: Date.parse(data.endDate)
+        startDate: data.startDate ? Date.parse(data.startDate) : 0,
+        endDate: data.endDate ? Date.parse(data.endDate): Date.now()
       };
 
       dispatch(setDateFilter(convertedTime));
