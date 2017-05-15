@@ -8,7 +8,7 @@ export function addItem(data) {
     type: ADD_ITEM,
     data: {
       ...data,
-      purchased: false,
+      purchased: data.purchased ? data.purchased : false,
       category: data.category ? data.category : 'Misc',
       price: data.price ? data.price : '$10'
     }

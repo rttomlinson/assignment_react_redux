@@ -21,6 +21,16 @@ console.log('initial store state:', store.getState());
 
 store.dispatch(
   addItem({
+    name: 'Appley Apple',
+    description: 'It is tasty',
+    category: 'Foods',
+    purchased: false,
+    amount: 10
+  })
+);
+
+store.dispatch(
+  addItem({
     name: 'Tasty cucumber',
     description: 'It is tasty',
     category: 'Weapons',

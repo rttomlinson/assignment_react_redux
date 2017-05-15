@@ -20,35 +20,36 @@ function filteredItems(list, filter) {
 }
 
 function sortedItems(list, sorting) {
-  console.log('List before:', list);
-  if (sorting == 'ASC') {
-    console.log('Sorting to asc');
+  if (sorting === 'ASC') {
     list.sort(function(a, b) {
-      if (a.name < b.name) return -1;
-      if (a.name > b.name) return 1;
-      return 0;
-    });
-  } else {
-    console.log('Sorting to desc');
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
 
+      if (a.name < b.name) return -1;
+      else return 1;
+    });
+  } else if (sorting === 'DESC') {
     list.sort(function(a, b) {
+      var nameA = a.name.toUpperCase();
+      var nameB = b.name.toUpperCase();
+
       if (a.name < b.name) return 1;
-      if (a.name > b.name) return -1;
-      return 0;
+      else return -1;
     });
   }
-
-  console.log('List after:', list);
 
   return list;
 }
 
 function mapStateToProps(state) {
+  let filtered = filteredItems(
+    state.groceryItems,
+    state.groceryFilters.purchasedFilter
+  );
+  let sorted = sortedItems(filtered, state.grocerySort);
+
   return {
-    items: filteredItems(
-      sortedItems(state.groceryItems, state.grocerySort),
-      state.groceryFilters.purchasedFilter
-    )
+    items: sorted
   };
 }
 
